@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <title>Students</title>
+</head>
+
+    <script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded"
+, function (event) { 
+        var Link = document.createElement("a")
+        let list = document.querySelector("ul.students")
+        Link.textContent = 'Create student'
+        Link.setAttribute('href', '/students/create')
+        list.append(Link)
+})
+    </script>
+
+
+<body>
+    <h1>Students</h1>
+    <ul class = "students">
+        <% students.forEach(function(student) { %>
+            <li>
+                <%= student.name %> | <%= student.school %>
+            </li>
+            <%})%>
+    </ul>
+</body>
+
+<button id="test">Click me</button>
+
+</html>
+
+
+
+
