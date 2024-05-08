@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Titre de Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px; /* Ajout de marge en bas */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        li {
+            margin-bottom: 20px; /* Ajout de marge entre les liens */
+        }
+        a {
+            display: inline-block; /* Permet de définir une largeur pour les liens */
+            padding: 10px 20px; /* Augmentation de la zone de clic */
+            background-color: transparent;
+            color: #3498db;
+            text-decoration: none;
+            border: 2px solid #3498db; /* Ajout d'une bordure bleue */
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        a:hover {
+            background-color: #3498db; /* Changement de couleur au survol */
+            color: #fff; /* Changement de couleur du texte au survol */
+        }
+    </style>
+</head>
+<body>
+
 <h1>Home</h1>
+
+<ul>
+    <li><a href="/students" id="studentsButton">Étudiants</a></li>
+    <li><a href="/create" id="createButton">Ajouter un étudiant</a></li>
+</ul>
+
+</body>
+</html>

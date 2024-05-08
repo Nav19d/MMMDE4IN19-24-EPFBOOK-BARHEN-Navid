@@ -1,37 +1,92 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        button#createButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button#createButton:hover {
+            background-color: #2980b9;
+        }
+        button.deleteButton {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button.deleteButton:hover {
+            background-color: #c0392b;
+        }
+    </style>
 </head>
-
-    <script type="text/javascript">
-
-document.addEventListener("DOMContentLoaded"
-, function (event) { 
-        var Link = document.createElement("a")
-        let list = document.querySelector("ul.students")
-        Link.textContent = 'Create student'
-        Link.setAttribute('href', '/students/create')
-        list.append(Link)
-})
-    </script>
-
 
 <body>
     <h1>Students</h1>
-    <ul class = "students">
-        <% students.forEach(function(student) { %>
-            <li>
-                <%= student.name %> | <%= student.school %>
-            </li>
-            <%})%>
+
+    <ul class="students">
+        <% students.forEach((student) => { %>
+        <li>
+            <div>
+                <%= student.name %> (<%= student.school %>)
+                <a href="/students/<%= student.id %>">Details</a>
+            </div>
+            <button class="deleteButton">Delete</button>
+        </li>
+        <% }); %>
     </ul>
-</body>
 
-<button id="test">Click me</button>
+    <button id="createButton">Create Student</button>
 
-</html>
+    <script>
+        document.getElementById("createButton").addEventListener("click", function () {
+            window.location.href = "http://localhost:3000/students/create";
+        });
+    </script>
 
-
-
-
+    

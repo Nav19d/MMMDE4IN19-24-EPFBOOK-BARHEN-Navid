@@ -170,5 +170,26 @@ app.post('/api/students/create', (req, res) => {
   })
 })
 
-
+app.get('/students/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const rowSeparator = "\n";
+  const cellSeparator = ";";
+  fs.readFile(
+    "data.csv",
+    "utf8",
+    (err, data) => {
+      const rows = data.split(rowSeparator);
+      const studentRow = rows[id + 1]; // +1 because row 0 is the header
+      if (!studentRow) {
+        res.status(404).send('Student not found');
+        return;
+      }
+      const cells = studentRow.split(cellSeparator);
+      const student = {
+        name: cells[0],
+        school: cells[1]
+      };
+      res.render("student_details", { student });
+    });
+});
 
