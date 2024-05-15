@@ -21,12 +21,14 @@ Cette application web permet de gérer les informations des étudiants (nom et �
 
 ## Installation
 
+
 1. Clonez ce dépôt :
 
     ```sh
     git clone https://github.com/votre-utilisateur/votre-repo.git
     cd votre-repo
     ```
+### Sans Docker
 
 2. Installez les dépendances :
 
@@ -45,6 +47,18 @@ Cette application web permet de gérer les informations des étudiants (nom et �
     name;school
     John Doe;Harvard
     Jane Smith;MIT
+    ```
+### Avec docker
+
+2. Construisez l'image Docker :
+
+    ```sh
+    docker build -t docker-nodejs .
+    ```
+
+3. Lancer l'application :
+        ```sh
+    docker run -p 49160:3000 -d docker-nodejs
     ```
 
 ## Exécution de l'Application
