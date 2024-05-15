@@ -70,13 +70,12 @@
     <h1>Students</h1>
 
     <ul class="students">
-        <% students.forEach((student) => { %>
+        <% students.forEach((student, index) => { %>
         <li>
             <div>
                 <%= student.name %> (<%= student.school %>)
-                <a href="/students/<%= student.id %>">Details</a>
+                <a href="/students/<%= index %>">Details</a>
             </div>
-            <button class="deleteButton">Delete</button>
         </li>
         <% }); %>
     </ul>
@@ -88,5 +87,5 @@
             window.location.href = "http://localhost:3000/students/create";
         });
     </script>
-
-    
+</body>
+</html>

@@ -1,10 +1,89 @@
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Details</title>
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        main {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        .fixed-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .fixed-buttons button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .fixed-buttons button:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-    <h1>Student Details</h1>
-    <p>Name: <%= student.Name %></p>
-    <p>School: <%= student.School %></p>
+    <main>
+        <h1>Student Details</h1>
+        <form action="/students/<%= student.id %>" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= student.name %>" required><br>
+            <label for="school">School:</label>
+            <input type="text" id="school" name="school" value="<%= student.school %>" required><br>
+            <button type="submit">Update</button>
+        </form>
+        <div class="fixed-buttons">
+            <button onclick="window.location.href='http://localhost:3000/students/'">Back</button>
+            <button onclick="window.location.href='http://localhost:3000/'">Home</button>
+        </div>
+    </main>
 </body>
 </html>

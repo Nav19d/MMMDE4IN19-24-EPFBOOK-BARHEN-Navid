@@ -39,9 +39,9 @@ async function authorizer(username, password, cb) {
 
         return admin;
       });
-      console.log("admins", admins);
+      
       for (const admin of admins) {
-        console.log("admin", admin);
+       
         if (basicAuth.safeCompare(username, admin.username) & bcrypt.compare(password, admin.password))
           console.log("accept");
         return cb(null, true)
