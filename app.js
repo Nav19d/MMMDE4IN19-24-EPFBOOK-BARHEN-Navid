@@ -192,19 +192,13 @@ app.post('/students/:id', (req, res) => {
     cells[0] = req.body.name;
     cells[1] = req.body.school;
     contentRows.splice(id, 1, cells.join(cellSeparator));
-
-    // Recomposer le fichier CSV
     const updatedCSV = [headerRow].concat(contentRows).join(rowSeparator);
-
-    // Écrire les données mises à jour dans le fichier CSV
     fs.writeFile("data.csv", updatedCSV, 'utf8', (err) => {
       if (err) {
         console.error('Erreur lors de l\'écriture du fichier CSV:', err);
         return res.status(500).send('Erreur lors de la mise à jour du fichier CSV');
       }
-
-      // Rediriger vers la page des détails de l'étudiant mis à jour
-      res.redirect(`/students/${id}`);
+      res.redirect(`/students/`);
     });
   });
 });

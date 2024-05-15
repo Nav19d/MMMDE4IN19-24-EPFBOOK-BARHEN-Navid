@@ -1,5 +1,10 @@
 # Application Web de Gestion des Étudiants
 
+## Exercice 0
+
+Pour avoir les informations du personnage de Rick and Morty dont l'id est 5, il faut se rendre sur la page : https://rickandmortyapi.com/api/character/5
+et récuperer le champ "name". On peut alors voir que le personnage est Jerry Smith
+
 Cette application web permet de gérer les informations des étudiants (nom et école). Elle est construite en utilisant Node.js et Express, avec les vues rendues par EJS. Les données des étudiants sont stockées dans un fichier CSV.
 
 ## Fonctionnalités
