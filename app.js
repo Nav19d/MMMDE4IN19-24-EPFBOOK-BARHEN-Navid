@@ -98,10 +98,6 @@ app.post('/students/create', (req, res) => {
   })
 })
 
-app.get('/api/students', (req, res) => {
-  res.send([{ name: "Eric Burel", school: "EPF" }, { name: "HarryPotter", school: "Poudlard" }])
-})
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
@@ -169,6 +165,49 @@ app.post('/api/students/create', (req, res) => {
     res.send('ok');
   })
 })
+app.use(express.urlencoded({ extended: false }))
+app.post('/students/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  console.log("id", id);
+
+  const rowSeparator = "\n";
+  const cellSeparator = ";";
+
+  fs.readFile("data.csv", "utf8", (err, data) => {
+    if (err) {
+      console.error('Erreur lors de la lecture du fichier CSV:', err);
+      return res.status(500).send('Erreur interne du serveur');
+    }
+
+    const rows = data.split(rowSeparator);
+
+    // Vérifiez si l'ID est valide
+    if (id < 0 || id >= rows.length - 1) { // -1 pour l'en-tête
+      return res.status(404).send('Étudiant non trouvé');
+    }
+
+    // Modifier la ligne correspondante
+    const [headerRow, ...contentRows] = rows;
+    const cells = contentRows[id].split(cellSeparator);
+    cells[0] = req.body.name;
+    cells[1] = req.body.school;
+    contentRows.splice(id, 1, cells.join(cellSeparator));
+
+    // Recomposer le fichier CSV
+    const updatedCSV = [headerRow].concat(contentRows).join(rowSeparator);
+
+    // Écrire les données mises à jour dans le fichier CSV
+    fs.writeFile("data.csv", updatedCSV, 'utf8', (err) => {
+      if (err) {
+        console.error('Erreur lors de l\'écriture du fichier CSV:', err);
+        return res.status(500).send('Erreur lors de la mise à jour du fichier CSV');
+      }
+
+      // Rediriger vers la page des détails de l'étudiant mis à jour
+      res.redirect(`/students/${id}`);
+    });
+  });
+});
 
 app.get('/students/:id', (req, res) => {
   const id = parseInt(req.params.id);
@@ -186,10 +225,12 @@ app.get('/students/:id', (req, res) => {
       }
       const cells = studentRow.split(cellSeparator);
       const student = {
+        id:id,
         name: cells[0],
         school: cells[1]
       };
       res.render("student_details", { student });
     });
 });
+
 
